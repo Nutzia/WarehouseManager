@@ -4,34 +4,36 @@ import state.*;
 import stock.Stock;
 import stock.StockDirection;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Product {
-    public String description;
+public abstract class Product {
     public List stockMovements = new LinkedList<Stock>();
     public int minStock;
     public int maxStock;
     public int critStock;
     public StateContext stateCtx;
 
-    public Product(String description, int minStock, int maxStock, int critStock){
-        this.description = description;
+
+
+    public Product(int minStock, int maxStock, int critStock){
         this.minStock = minStock;
         this.maxStock = maxStock;
         this.critStock = critStock;
     }
 
-    public void increaseStock(int amount) {
-        Stock incStock = new Stock(amount, StockDirection.IN);
-
-        stockMovements.add(incStock);
+    public void doStockMovement(Stock stock) {
+        stockMovements.add(stock);
     }
 
-    public void decreaseStock(int amount) {
-        Stock decStock = new Stock(amount, StockDirection.OUT);
-
-        stockMovements.add(decStock);
+    @Override
+    public String toString() {
+        return "Product{" +
+                "stockMovements=" + stockMovements +
+                ", minStock=" + minStock +
+                ", maxStock=" + maxStock +
+                ", critStock=" + critStock +
+                ", stateCtx=" + stateCtx +
+                '}';
     }
 }
