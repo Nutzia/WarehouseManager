@@ -1,6 +1,8 @@
 package test;
 
+import factory.ProductFactory;
 import product.Product;
+import product.ProductType;
 import stock.Stock;
 
 import java.util.Iterator;
@@ -11,17 +13,27 @@ public class TestWarehouse {
     //Create list of products where each product has a random quantity and a random amount of stockmovements
     //Keep in mind that each product has a state
 
+    private Product[] numberOfProducts;
+
     public static void main(String[] args) {
-        Product muismat = new Product("Muismat", 10, 100, 90);
+        TestWarehouse testWarehouse = new TestWarehouse();
+        testWarehouse.compile();
+        testWarehouse.print();
+    }
 
-        muismat.increaseStock(25);
-        muismat.increaseStock(7);
-        muismat.decreaseStock(20);
+    public void compile() {
+        ProductType[] productTypes = ProductType.values();
 
-        for (Iterator i = muismat.stockMovements.iterator(); i.hasNext();) {
-            Stock s = (Stock)i.next();
+        numberOfProducts = new Product[5 + ProductFactory.random.nextInt(15)];
 
-            System.out.println("" + s.amount + " - " + s.direction);
+        for (int i = 0; i < numberOfProducts.length; i++) {
+            numberOfProducts[i] = ProductFactory.getProduct(productTypes[ProductFactory.random.nextInt(productTypes.length)]);
+        }
+    }
+
+    public void print() {
+        for (int i = 0; i < numberOfProducts.length; i++) {
+            System.out.println("\nProduct " + (i + 1) + ": " + numberOfProducts[i].toString());
         }
     }
 }
