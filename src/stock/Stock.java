@@ -3,9 +3,16 @@ package stock;
 public class Stock {
     public int amount;
     public StockDirection direction;
+    //public int numberMovements;
 
-    public Stock(int amount, StockDirection direction) {
-        this.amount = amount;
+    //public int getNumberMovements(){
+      //  return numberMovements;
+    //}
+    public Stock(StockDirection direction) {
         this.direction = direction;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }

@@ -1,6 +1,11 @@
 package stock;
 
 public enum StockDirection {
-    IN,
-    OUT
+    INITIAL,
+    BUY,
+    PRODUCTION,
+    SELL,
+    RESERVATION,
+    TRANSPORT,
+    QUARANTAINE
 }
